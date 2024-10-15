@@ -1,0 +1,14 @@
+<!-- src/app/components/appointment-scheduling/appointment-scheduling.component.html -->
+<h2>Appointment Scheduling</h2>
+<form (submit)="scheduleAppointment()">
+  <label for="doctor">Doctor:</label>
+  <input type="text" id="doctor" [(ngModel)]="appointment.doctorName" name="doctor"/>
+
+  <label for="date">Date:</label>
+  <input type="date" id="date" [(ngModel)]="appointment.appointmentDate" name="date"/>
+
+  <label for="reason">Reason:</label>
+  <input type="text" id="reason" [(ngModel)]="appointment.reason" name="reason"/>
+
+  <button type="submit">Schedule</button>
+</form>
