@@ -1,20 +1,82 @@
-<!-- src/app/components/patient-profile/patient-profile.component.html -->
-<h2>Patient Profile</h2>
-<form (submit)="saveProfile()">
-  <label for="name">Name:</label>
-  <input type="text" id="name" [(ngModel)]="patient.name" name="name"/>
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Patient Profile</h2>
 
-  <label for="age">Age:</label>
-  <input type="number" id="age" [(ngModel)]="patient.age" name="age"/>
+  <!-- Alert Messages -->
+  <div *ngIf="message" class="alert alert-info" role="alert">
+    {{ message }}
+  </div>
 
-  <label for="gender">Gender:</label>
-  <select [(ngModel)]="patient.gender" name="gender">
-    <option value="male">Male</option>
-    <option value="female">Female</option>
-  </select>
+  <!-- Selected Patient Profile -->
+  <div *ngIf="selectedPatient; else noPatient" class="card mb-4 shadow">
+    <div class="card-header bg-primary text-white">
+      <h5 class="mb-0">{{ selectedPatient.name }}'s Profile</h5>
+    </div>
+    <div class="card-body">
+      <p><strong>Contact:</strong> {{ selectedPatient.contact }}</p>
+      <p><strong>Age:</strong> {{ selectedPatient.age }}</p>
+      <p><strong>Gender:</strong> {{ selectedPatient.gender }}</p>
 
-  <label for="contact">Contact:</label>
-  <input type="text" id="contact" [(ngModel)]="patient.contact" name="contact"/>
+      <h6 class="mt-4">Medical Records:</h6>
+      <ul class="list-group mb-3">
+        <li *ngFor="let record of selectedPatient.medicalRecords" class="list-group-item">
+          <strong>Date:</strong> {{ record.date }} <br>
+          <strong>Details:</strong> {{ record.details }}
+        </li>
+      </ul>
 
-  <button type="submit">Save</button>
-</form>
+      <h6 class="mt-4">Appointments:</h6>
+      <ul class="list-group mb-3">
+        <li *ngFor="let appointment of selectedPatient.appointments" class="list-group-item">
+          <strong>Date:</strong> {{ appointment.date }}<br/>
+          <strong>Time:</strong> {{ appointment.time }}<br/>
+          <strong>Doctor:</strong> {{ appointment.doctor }}<br/>
+          <strong>Status:</strong> {{ appointment.status }}
+        </li>
+      </ul>
+
+      <button class="btn btn-warning" (click)="editProfile()">Edit Profile</button>
+    </div>
+  </div>
+
+  <ng-template #noPatient>
+    <div class="alert alert-danger" role="alert">
+      No patient data available. Please log in again.
+    </div>
+  </ng-template>
+
+  <!-- Patient Registration Form -->
+  <div *ngIf="isEditing && selectedPatient" class="card shadow">
+    <div class="card-header bg-warning text-white">
+      <h5 class="mb-0">Edit Patient Profile</h5>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="saveProfile()">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name:</label>
+          <input type="text" id="name" [(ngModel)]="selectedPatient.name" name="name" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="age" class="form-label">Age:</label>
+          <input type="number" id="age" [(ngModel)]="selectedPatient.age" name="age" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="gender" class="form-label">Gender:</label>
+          <select [(ngModel)]="selectedPatient.gender" name="gender" class="form-select" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="contact" class="form-label">Contact:</label>
+          <input type="text" id="contact" [(ngModel)]="selectedPatient.contact" name="contact" class="form-control" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>
+      </form>
+    </div>
+  </div>
+</div>

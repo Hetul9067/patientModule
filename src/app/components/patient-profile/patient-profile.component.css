@@ -1,0 +1,31 @@
+/* src/app/components/patient-profile/patient-profile.component.css */
+
+.container {
+    background-color: #f8f9fa; /* Light background for the container */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px; /* Padding for the container */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  .card {
+    border: none; /* Remove default border for a cleaner look */
+  }
+  
+  .card-header {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white; /* White text on header */
+  }
+  
+  .btn-primary {
+    background-color: #007bff; /* Bootstrap primary color */
+    border: none; /* Remove default border */
+  }
+  
+  .list-group-item {
+    cursor: pointer; /* Change cursor to pointer for list items */
+  }
+  
+  .list-group-item:hover {
+    background-color: #e2e6ea; /* Light hover effect */
+  }
+  

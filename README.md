@@ -25,3 +25,46 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+<!-- 
+// import { NgModule } from '@angular/core';
+// import { RouterModule, Routes } from '@angular/router';
+// import { PatientProfileComponent } from './components/patient-profile/patient-profile.component';
+// import { AppointmentSchedulingComponent } from './components/appointment-scheduling/appointment-scheduling.component';
+// import { MedicalRecordsComponent } from './components/medical-records/medical-records.component';
+// import { DoctorNotesComponent } from './components/doctor-notes/doctor-notes.component';
+// import { SearchFilterComponent } from './components/search-filter/search-filter.component';
+// import { LayoutComponent } from './layout/layout.component';
+
+// const routes: Routes = [
+//   { path: '', component: LayoutComponent},
+//   { path: 'patient-profile', component: PatientProfileComponent },
+//   { path: 'appointment-scheduling', component: AppointmentSchedulingComponent },
+//   { path: 'medical-records', component: MedicalRecordsComponent },
+//   { path: 'doctor-notes', component: DoctorNotesComponent },
+//   { path: 'search-filter', component: SearchFilterComponent },
+//   { path: '', redirectTo: '/patient-profile', pathMatch: 'full' } // Default route
+// ];
+
+// @NgModule({
+//   imports: [RouterModule.forRoot(routes)],
+//   exports: [RouterModule]
+// })
+// export class AppRoutingModule {}
+
+
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './components/login/login.component'; // Adjust the import path
+
+const routes: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' }, // Adjust this path as needed
+  { path: '**', redirectTo: '/home' } // Catch-all route
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule {} -->

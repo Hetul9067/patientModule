@@ -1,14 +1,90 @@
-<!-- src/app/components/appointment-scheduling/appointment-scheduling.component.html -->
-<h2>Appointment Scheduling</h2>
-<form (submit)="scheduleAppointment()">
-  <label for="doctor">Doctor:</label>
-  <input type="text" id="doctor" [(ngModel)]="appointment.doctorName" name="doctor"/>
+<div class="container mt-5">
+  <div class="card shadow-lg">
+    <div class="card-header bg-primary text-white">
+      <h2 class="text-center">Schedule Appointment</h2>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="schedule()" #appointmentForm="ngForm">
+        <div class="mb-3">
+          <label for="date" class="form-label">Date:</label>
+          <input 
+            type="date" 
+            id="date" 
+            [(ngModel)]="appointment.date" 
+            name="date" 
+            required 
+            class="form-control"
+            #date="ngModel"
+          />
+          <div *ngIf="date.invalid && (date.dirty || date.touched)" class="text-danger">
+            <small *ngIf="date.errors?.['required']">Date is required.</small>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="time" class="form-label">Time:</label>
+          <input 
+            type="time" 
+            id="time" 
+            [(ngModel)]="appointment.time" 
+            name="time" 
+            required 
+            class="form-control"
+            #time="ngModel"
+          />
+          <div *ngIf="time.invalid && (time.dirty || time.touched)" class="text-danger">
+            <small *ngIf="time.errors?.['required']">Time is required.</small>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="doctor" class="form-label">Doctor:</label>
+          <select 
+            id="doctor" 
+            [(ngModel)]="appointment.doctor" 
+            name="doctor" 
+            class="form-select" 
+            required
+            #doctor="ngModel"
+          >
+            <option value="">Select a doctor</option>
+            <option value="Dr. Smith">Dr. Smith</option>
+            <option value="Dr. Emily">Dr. Emily</option>
+            <option value="Dr. Robert">Dr. Robert</option>
+          </select>
+          <div *ngIf="doctor.invalid && (doctor.dirty || doctor.touched)" class="text-danger">
+            <small *ngIf="doctor.errors?.['required']">Doctor selection is required.</small>
+          </div>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-success" [disabled]="appointmentForm.invalid">Schedule Appointment</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
-  <label for="date">Date:</label>
-  <input type="date" id="date" [(ngModel)]="appointment.appointmentDate" name="date"/>
-
-  <label for="reason">Reason:</label>
-  <input type="text" id="reason" [(ngModel)]="appointment.reason" name="reason"/>
-
-  <button type="submit">Schedule</button>
-</form>
+  <!-- Section to display the list of appointments -->
+  <div *ngIf="appointments.length > 0" class="card mt-4 shadow-lg">
+    <div class="card-header bg-success text-white">
+      <h3 class="text-center">Scheduled Appointments</h3>
+    </div>
+    <div class="card-body">
+      <table class="table table-bordered table-hover">
+        <thead class="bg-light">
+          <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Doctor</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let appointment of appointments">
+            <td>{{ appointment.date }}</td>
+            <td>{{ appointment.time }}</td>
+            <td>{{ appointment.doctor }}</td>
+            <td>{{ appointment.status }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

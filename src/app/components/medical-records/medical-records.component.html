@@ -1,5 +1,27 @@
-<!-- src/app/components/medical-records/medical-records.component.html -->
-<h2>Medical Records</h2>
-<ul>
-  <li *ngFor="let record of medicalRecords">{{ record }}</li>
-</ul>
+<div class="container my-5">
+  <h2 class="text-center mb-4">Medical Records</h2>
+  
+  <div class="card shadow">
+    <div class="card-header bg-primary text-white">
+      <h5 class="mb-0">Your Medical History</h5>
+    </div>
+    <div class="card-body">
+      <ul class="list-group">
+        <li *ngFor="let record of medicalRecords" class="list-group-item">
+          <div class="d-flex justify-content-between">
+            <div>
+              <strong>Date:</strong> {{ record.date }} <br />
+              <strong>Details:</strong> {{ record.details }}
+            </div>
+            <button class="btn btn-info btn-sm" (click)="viewRecord(record)" href="medical-record-details">View</button>
+          </div>
+        </li>
+      </ul>
+      <ng-container *ngIf="medicalRecords.length === 0">
+        <div class="alert alert-warning text-center" role="alert">
+          No medical records found.
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

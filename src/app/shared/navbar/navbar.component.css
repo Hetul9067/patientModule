@@ -1,0 +1,10 @@
+.username {
+    font-weight: bold;
+    color: #007bff; /* Bootstrap primary color */
+    font-size: 1.1rem; /* Slightly larger font */
+    padding: 0.5rem 1rem; /* Add some padding */
+    border-radius: 0.25rem; /* Rounded corners */
+    background-color: rgba(0, 123, 255, 0.1); /* Light background */
+    
+  }
+  

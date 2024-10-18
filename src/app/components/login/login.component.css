@@ -1,0 +1,15 @@
+.card {
+    border-radius: 10px; /* Rounded corners for the card */
+}
+
+h2 {
+    color: #007bff; /* Optional: Change the color of the heading */
+}
+
+label {
+    font-weight: bold; /* Make labels bold */
+}
+
+.btn {
+    font-size: 16px; /* Larger text for the button */
+}
